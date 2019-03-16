@@ -126,28 +126,31 @@
 	</div>
 	<script type="text/javascript">
 		var game = {
-			possiblePitches: ["C", "Cr-Dl", "D", "Dr-El", "E", "F", "Fr-Gl", "G", "Gr-Al", "A", "Ar-Al", "B"],
-			pitch: "",
-			methods: {
-				setPitch: () => {
-					game.pitch = game.possiblePitches[Math.floor(Math.random() * game.possiblePitches.length)];
-					document.getElementById("audio").src = `audio/${game.pitch}.mp3`
-				},
-				start: () => {
-					document.getElementById("audio").currentTime = 0.0;
-					game.methods.setPitch();
-					document.getElementById("audio").play();
-				},
-				check: () => {
-					var currentPitch = game.pitch.replace("r", "#").replace("l", "b").toLowerCase().split('-');
-					if (currentPitch.indexOf(document.getElementById("input").value.toLowerCase()) > -1) {
-						alert("Correct!");
-					} else {
-						alert(`Incorrect. It was a ${game.pitch.replace("r", "#").replace("l", "b").replace("-", "/")}.`);
-					}
-				}
-			}
+		  possiblePitches: ["C", "Cr-Dl", "D", "Dr-El", "E", "F", "Fr-Gl", "G", "Gr-Al", "A", "Ar-Al", "B"],
+		  pitch: "",
+		  methods: {
+		    setPitch: () => {
+		      game.pitch = game.possiblePitches[Math.floor(Math.random() * game.possiblePitches.length)];
+		      document.getElementById("audio").src = `audio/${game.pitch}.mp3`
+		    },
+		    start: () => {
+		      document.getElementById("audio").currentTime = 0.0;
+		      //game.methods.setPitch();
+		      document.getElementById("audio").play();
+		    },
+		    check: () => {
+		      var currentPitch = game.pitch.replace("r", "#").replace("l", "b").toLowerCase().split('-');
+		      if (currentPitch.indexOf(document.getElementById("input").value.toLowerCase()) > -1) {
+		        alert("Correct!");
+		        game.methods.setPitch();
+		        game.methods.start();
+		      } else {
+		        alert(`Incorrect. It was a ${game.pitch.replace("r", "#").replace("l", "b").replace("-", "/")}.`);
+		      }
+		    }
+		  }
 		};
+		game.methods.setPitch();
 	</script>
 </body>
 </html>
