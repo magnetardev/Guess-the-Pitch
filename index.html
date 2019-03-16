@@ -102,9 +102,7 @@
 	</style>
 </head>
 <body>
-	<audio id="audio" controls>
-		<source src="audio/C.mp3" type="audio/mpeg">
-	</audio>
+
 	<div class="container">
 		<div class="card">
 			<h1 style="padding-bottom: 0px; margin-bottom: 0px;">Guess the Pitch</h1>
@@ -128,15 +126,15 @@
 		var game = {
 		  possiblePitches: ["C", "Cr-Dl", "D", "Dr-El", "E", "F", "Fr-Gl", "G", "Gr-Al", "A", "Ar-Bl", "B"],
 		  pitch: "",
+			nodeBox: new Audio(),
 		  methods: {
 		    setPitch: () => {
 		      game.pitch = game.possiblePitches[Math.floor(Math.random() * game.possiblePitches.length)];
-		      document.getElementById("audio").src = `audio/${game.pitch}.mp3`
+		     	game.nodeBox.src = `audio/${game.pitch}.mp3`
 		    },
 		    start: () => {
-		      document.getElementById("audio").currentTime = 0.0;
-		      //game.methods.setPitch();
-		      document.getElementById("audio").play();
+		      game.nodeBox.currentTime = 0.0;
+		      game.nodeBox.play();
 		    },
 		    check: () => {
 		      var currentPitch = game.pitch.replace("r", "#").replace("l", "b").toLowerCase().split('-');
