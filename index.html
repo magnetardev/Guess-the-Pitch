@@ -131,9 +131,7 @@
 			methods: {
 				setPitch: () => {
 					game.pitch = game.possiblePitches[Math.floor(Math.random() * game.possiblePitches.length)];
-					document.getElementById("audio").innerHTML = `
-						<source src="audio/${game.pitch}.mp3" type="audio/mpeg">
-					`;
+					document.getElementById("audio").src = `audio/${game.pitch}.mp3`
 				},
 				start: () => {
 					document.getElementById("audio").currentTime = 0.0;
@@ -147,7 +145,6 @@
 					} else {
 						alert(`Incorrect. It was a ${game.pitch.replace("r", "#").replace("l", "b").replace("-", "/")}.`);
 					}
-					game.methods.setPitch();
 				}
 			}
 		};
