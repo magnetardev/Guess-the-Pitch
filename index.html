@@ -128,14 +128,15 @@
 		var game = {
 		  possiblePitches: ["C", "Cr-Dl", "D", "Dr-El", "E", "F", "Fr-Gl", "G", "Gr-Al", "A", "Ar-Bl", "B"],
 		  pitch: "",
+			nodeBox: new Audio(),
 		  methods: {
 		    setPitch: () => {
 		      game.pitch = game.possiblePitches[Math.floor(Math.random() * game.possiblePitches.length)];
-		      document.getElementById("audio").src = `audio/${game.pitch}.mp3`
+		     	game.nodeBox.src = `audio/${game.pitch}.mp3`
 		    },
 		    start: () => {
-		      document.getElementById("audio").currentTime = 0.0;
-		      document.getElementById("audio").play();
+		      game.nodeBox.currentTime = 0.0;
+		      game.nodeBox.play();
 		    },
 		    check: () => {
 		      var currentPitch = game.pitch.replace("r", "#").replace("l", "b").toLowerCase().split('-');
